@@ -5,11 +5,11 @@
  */
 package com.gmapp.app.altacontratos;
 
-import com.gmapp.comun.CrearPDFWithLibreOffice;
-import com.gmapp.comun.ImprimirWithLibreOffice;
-import com.gmapp.comun.LeerPathFromXML;
-import com.gmapp.utilidades.CodeParaEAN13;
-import com.gmapp.utilidades.Funciones;
+import com.gmapp.common.CreatePDFWithLibreOffice;
+import com.gmapp.common.PrintWithLibreOffice;
+import com.gmapp.common.ReadPathFromXML;
+import com.gmapp.utilities.CodeParaEAN13;
+import com.gmapp.utilities.Funciones;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,6 +19,62 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -45,12 +101,12 @@ public class CarpetaA3ControlGestor {
         libroCalcActual = cargaPlantilla();
         rellenarDGM_003(libroCalcActual);
         String nomFileToPrint = guardarDGM_003toPrint();
-        ImprimirWithLibreOffice print = new ImprimirWithLibreOffice(nomFileToPrint);
+        PrintWithLibreOffice print = new PrintWithLibreOffice(nomFileToPrint);
         showMessageDialog(null, "Documento A3 para carpetilla de control gestor\n"
                     + "se ha enviado a la impresora","Impresión de documentos",INFORMATION_MESSAGE);   
         
         String nomFileToPDF = guardarDGM_003toPDFparaGestor();
-        CrearPDFWithLibreOffice pdf = new CrearPDFWithLibreOffice(nomFileToPDF);
+        CreatePDFWithLibreOffice pdf = new CreatePDFWithLibreOffice(nomFileToPDF);
         showMessageDialog(null, "PDF de notificación al gestor del nuevo contrato\n"
                     + "se ha guardado en su directorio \"Borrame\"","Creación de PDF",INFORMATION_MESSAGE);   
     }
@@ -222,7 +278,7 @@ public class CarpetaA3ControlGestor {
             DateFormat formatoHora = new SimpleDateFormat("HHmmss");
             String horaActual = formatoHora.format(fecha);
             
-            LeerPathFromXML Path = new LeerPathFromXML();
+            ReadPathFromXML Path = new ReadPathFromXML();
             String myPathToTemp = Path.cargarXml("PathToTemp");
             
             try {
@@ -261,7 +317,7 @@ public class CarpetaA3ControlGestor {
         sTrabajador = sTrabajador.replace(", ","_");
         sTrabajador = sTrabajador.replace(" ", "_");
         
-        LeerPathFromXML Path = new LeerPathFromXML();
+        ReadPathFromXML Path = new ReadPathFromXML();
         String myPathToTemp = Path.cargarXml("PathToTemp");
         
         try {

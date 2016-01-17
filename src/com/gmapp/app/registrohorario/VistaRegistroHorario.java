@@ -22,14 +22,14 @@ public class VistaRegistroHorario extends JPanel {
 
     JButton botonLlamante;
     MenuPrincipal menu;
-    private ControladorRH controlador;
+    private ControladorRH controladorRH;
     final double[][]mDoubleHorasHorario = new double[8][7];
     private DefaultTableModel tablaContratosModelo;
  
     public VistaRegistroHorario(ModeloRH modelo) {
         initComponents();
         etqCabecera.setText("<html><p ALIGN=center>Impresión de Registros Horarios</p><p> para contratos de trabajo a tiempo parcial y de formación</p></html>");
-        controlador = new ControladorRH(modelo, this); 
+        controladorRH = new ControladorRH(modelo, this); 
         
         tablaContratosModelo = (DefaultTableModel) tablaContratos.getModel();
         tablaContratos.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD,11));
@@ -38,11 +38,15 @@ public class VistaRegistroHorario extends JPanel {
     }
     
     public void cambiadoCliente(){
-        controlador.cambiadoCliente();
+        controladorRH.cambiadoCliente();
     }
     
     public void cambiadoMes(){
-        controlador.cambiadoMes();        
+        controladorRH.cambiadoMes();        
+    }
+    
+    public void cambiadoAnno(){
+        controladorRH.cambiadoMes();        
     }
     
     public int getComboClientesSelectedIndex(){
@@ -162,6 +166,11 @@ public class VistaRegistroHorario extends JPanel {
         tfAnnoImp.setMaximumSize(new java.awt.Dimension(70, 25));
         tfAnnoImp.setMinimumSize(new java.awt.Dimension(70, 25));
         tfAnnoImp.setPreferredSize(new java.awt.Dimension(70, 25));
+        tfAnnoImp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfAnnoImpFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -350,7 +359,7 @@ public class VistaRegistroHorario extends JPanel {
         etqCabecera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqCabecera.setText("Impresión de Registros Horarios para contratos de trabajo a tiempo parcial y de formación");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gmapp/miscelanea/GMapp_PNG_64x64.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gmapp/miscellany/GMapp_PNG_64x64.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Gestoría MOLDES");
@@ -453,7 +462,7 @@ public class VistaRegistroHorario extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonImprimirMouseClicked
-        controlador.botonImprimirClicked();
+        controladorRH.botonImprimirClicked();
     }//GEN-LAST:event_botonImprimirMouseClicked
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
@@ -464,7 +473,7 @@ public class VistaRegistroHorario extends JPanel {
     }//GEN-LAST:event_botonSalirMouseClicked
 
     private void botonPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPDFMouseClicked
-        controlador.botonPDFclicked();
+        controladorRH.botonPDFclicked();
     }//GEN-LAST:event_botonPDFMouseClicked
 
     private void comboClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClientesActionPerformed
@@ -486,8 +495,14 @@ public class VistaRegistroHorario extends JPanel {
     }//GEN-LAST:event_tablaContratosMouseClicked
 
     private void comboMesesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMesesActionPerformed
+    if(comboClientes.getItemCount() > 1)
         cambiadoMes();
     }//GEN-LAST:event_comboMesesActionPerformed
+
+    private void tfAnnoImpFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfAnnoImpFocusLost
+    if(comboClientes.getItemCount() > 1)
+        cambiadoAnno();
+    }//GEN-LAST:event_tfAnnoImpFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

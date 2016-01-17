@@ -13,17 +13,14 @@ import com.gmapp.app.registrohorario.ModeloRH;
 import com.gmapp.app.registrohorario.VistaRegistroHorario;
 import com.gmapp.app.variacioncontratos.ModeloVC;
 import com.gmapp.app.variacioncontratos.VistaVariacionContrato;
-import com.gmapp.comun.LeerPathFromXML;
-import com.gmapp.utilidades.BaseDeDatos;
-import com.gmapp.utilidades.InformacionEntorno;
+import com.gmapp.common.ReadPathFromXML;
+import com.gmapp.utilities.BaseDeDatos;
+import com.gmapp.utilities.InformacionEntorno;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 /**
  *
@@ -41,14 +38,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     public MenuPrincipal() {
         initComponents();
-        setIconImage (new ImageIcon(getClass().getResource("/com/gmapp/miscelanea/GMapp_GIF_64x64.gif")).getImage());
+        setIconImage (new ImageIcon(getClass().getResource("/com/gmapp/miscellany/GMapp_GIF_64x64.gif")).getImage());
         InformacionEntorno info = new InformacionEntorno();
         info.InformacionEntorno();
         gmoldesActualizaEnVigorDB();
         limpiarTemporales();
         iVentanasAbiertas = 0;
 //        System.out.println(classPath);
-//        LeerPathFromXML path = new LeerPathFromXML();
+//        ReadPathFromXML path = new ReadPathFromXML();
 //        path.cargarXml("PathToPDF");
 //        path.cargarXml("PathToPrint");
     }
@@ -88,7 +85,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void limpiarTemporales(){
-        LeerPathFromXML Path = new LeerPathFromXML();
+        ReadPathFromXML Path = new ReadPathFromXML();
         String myPathToTemp = Path.cargarXml("PathToTemp");
         String dir = "";
         
@@ -161,7 +158,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gmapp/miscelanea/GMapp_GIF_64x64.gif"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gmapp/miscellany/GMapp_GIF_64x64.gif"))); // NOI18N
 
         btVariacionCtto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btVariacionCtto.setText("Variación en contrato existente");
@@ -293,7 +290,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 vista.setVentanasAbiertas(this);
                 v.setResizable(false);
                 v.setLocationRelativeTo(null);
-                v.setIconImage (new ImageIcon(getClass().getResource("/com/gmapp/miscelanea/GMapp_GIF_64x64.gif")).getImage());
+                v.setIconImage (new ImageIcon(getClass().getResource("/com/gmapp/miscellany/GMapp_GIF_64x64.gif")).getImage());
                 v.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 v.setVisible(true);
             }catch (Exception e) {
@@ -308,17 +305,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
             btImpRegHor.setEnabled(false);
             iVentanasAbiertas = iVentanasAbiertas + 1;
             ModeloRH modeloRH = new ModeloRH();
-            VistaRegistroHorario vista = new VistaRegistroHorario(modeloRH);
+            VistaRegistroHorario vistaRH = new VistaRegistroHorario(modeloRH);
             try{
                 JDialog v = new JDialog();
                 v.setTitle("Gestoría MOLDES - Impresión de Registros Horarios");
-                v.getContentPane().add(vista);
+                v.getContentPane().add(vistaRH);
                 v.pack();
-                vista.setBotonMenuPrincipal(btImpRegHor);
-                vista.setVentanasAbiertas(this);
+                vistaRH.setBotonMenuPrincipal(btImpRegHor);
+                vistaRH.setVentanasAbiertas(this);
                 v.setResizable(false);
                 v.setLocationRelativeTo(null);
-                v.setIconImage (new ImageIcon(getClass().getResource("/com/gmapp/miscelanea/GMapp_GIF_64x64.gif")).getImage());
+                v.setIconImage (new ImageIcon(getClass().getResource("/com/gmapp/miscellany/GMapp_GIF_64x64.gif")).getImage());
                 v.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 v.setVisible(true);
             }catch (Exception e) {
@@ -343,7 +340,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 vista.setVentanasAbiertas(this);
                 v.setResizable(false);
                 v.setLocationRelativeTo(null);
-                v.setIconImage (new ImageIcon(getClass().getResource("/com/gmapp/miscelanea/GMapp_GIF_64x64.gif")).getImage());
+                v.setIconImage (new ImageIcon(getClass().getResource("/com/gmapp/miscellany/GMapp_GIF_64x64.gif")).getImage());
                 //v.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 v.setVisible(true);
             }catch (Exception e) {

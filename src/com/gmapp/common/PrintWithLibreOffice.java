@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmapp.comun;
+package com.gmapp.common;
 
 import java.io.IOException;
 /**
  *
  * @author jmrb
  */
-public class ImprimirWithLibreOffice {
+public class PrintWithLibreOffice {
 public String SysOp = System.getProperty("os.name");
 public String userName = System.getProperty("user.name");    
  
     
-    public ImprimirWithLibreOffice(String libroGuardado) {
+    public PrintWithLibreOffice(String libroGuardado) {
         String programa = "";
         // Determinamos Path a LO
         try {
