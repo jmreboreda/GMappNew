@@ -148,6 +148,9 @@
               <Dimension value="[70, 25]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfAnnoImpFocusLost"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -530,7 +533,7 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/gmapp/miscelanea/GMapp_PNG_64x64.png"/>
+                  <Image iconType="3" name="/com/gmapp/miscellany/GMapp_PNG_64x64.png"/>
                 </Property>
               </Properties>
             </Component>

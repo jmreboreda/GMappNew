@@ -5,8 +5,8 @@
  */
 package com.gmapp.app.altacontratos;
 
-import com.gmapp.comun.ImprimirWithLibreOffice;
-import com.gmapp.comun.LeerPathFromXML;
+import com.gmapp.common.PrintWithLibreOffice;
+import com.gmapp.common.ReadPathFromXML;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -108,7 +108,7 @@ public class PortadaExpedienteContrato {
         String nomFileSave = "";
         String horaActual = formatoHora.format(fecha);
                
-        LeerPathFromXML Path = new LeerPathFromXML();
+        ReadPathFromXML Path = new ReadPathFromXML();
         String myPath = Path.cargarXml("PathToPrint");
 
         if (SysOp.equals("Linux"))
@@ -127,6 +127,6 @@ public class PortadaExpedienteContrato {
     }
      
     private void ImprimirExpedienteContrato(String pathFile) {    
-        ImprimirWithLibreOffice print = new ImprimirWithLibreOffice(pathFile);
+        PrintWithLibreOffice print = new PrintWithLibreOffice(pathFile);
     }
 }

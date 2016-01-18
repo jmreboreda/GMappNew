@@ -6,8 +6,8 @@
 package com.gmapp.app.registrohorario;
 
 
-import com.gmapp.utilidades.Funciones;
-import com.gmapp.utilidades.MesesAnno;
+import com.gmapp.utilities.Funciones;
+import com.gmapp.utilities.MesesAnno;
 import com.gmapp.vo.ClienteVO;
 import com.gmapp.vo.ContratoVO;
 import com.gmapp.vo.PersonaVO;
@@ -22,9 +22,9 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class ControladorRH {
 
-    private ModeloRH modelo;
+    private ModeloRH modeloRH;
 
-    private VistaRegistroHorario vista;
+    private VistaRegistroHorario vistaRH;
 
     private Boolean cargandoMeses = false;
     private boolean cargandoClientes = false;
@@ -34,10 +34,10 @@ public class ControladorRH {
 
     public ControladorRH(ModeloRH modelo, VistaRegistroHorario vista) {
         
-        this.modelo = modelo;
-        this.vista = vista;
+        this.modeloRH = modelo;
+        this.vistaRH = vista;
         // ************************************************
-        // Pasa a la vista los items del combo de meses
+        // Pasa a la vistaRH los items del combo de meses
         // y fija el combo en mes y año determinados
         // *************************************************
         cargandoMeses = true;
@@ -45,7 +45,7 @@ public class ControladorRH {
         List mesesDelAnno = mesesAnno.getNombresMesesAnno();
             for (int i = 0; i < mesesDelAnno.size(); i++){
                 String mes = mesesDelAnno.get(i).toString();
-                vista.comboMesesAddItem(mes);
+                vistaRH.comboMesesAddItem(mes);
             }
        
         Date fechaHoy = new Date();
@@ -57,17 +57,17 @@ public class ControladorRH {
         int numeroAnnoHoy = Integer.parseInt(annoHoy.format(fechaHoy));            
         
         if(numeroMesHoy == 12){
-            vista.comboMesesSetSelectedIndex(0);    // enero -> index = 0
-            vista.setAnno(Integer.toString(numeroAnnoHoy + 1));
+            vistaRH.comboMesesSetSelectedIndex(0);    // enero -> index = 0
+            vistaRH.setAnno(Integer.toString(numeroAnnoHoy + 1));
         }
         else
         {
-            vista.comboMesesSetSelectedIndex(numeroMesHoy); 
-            vista.setAnno(Integer.toString(numeroAnnoHoy));
+            vistaRH.comboMesesSetSelectedIndex(numeroMesHoy); 
+            vistaRH.setAnno(Integer.toString(numeroAnnoHoy));
         }
         cargandoMeses = false;
         // ****************************************************
-        // Pasa a la vista los items del combo de clientes.
+        // Pasa a la vistaRH los items del combo de clientes.
         // ****************************************************
         cargandoClientes = true;
         ClienteVO miCliente;
@@ -75,7 +75,7 @@ public class ControladorRH {
         if(listaClientes.size() > 0){
              for (int i = 0; i < listaClientes.size(); i++){
                 miCliente = listaClientes.get(i);
-                vista.comboClientesAddItem(miCliente.getNom_rzsoc());
+                vistaRH.comboClientesAddItem(miCliente.getNom_rzsoc());
                 listaIDClientes.add(miCliente.getIdcliente()); 
              }
         }
@@ -99,15 +99,15 @@ public class ControladorRH {
         if(cargandoClientes)
             return;
         
-        int indexSelected = vista.getComboClientesSelectedIndex();
+        int indexSelected = vistaRH.getComboClientesSelectedIndex();
         
         if(indexSelected == 0){
             
-            vista.limpiarTablaContratos();
+            vistaRH.limpiarTablaContratos();
             return;
         }
         
-        vista.limpiarTablaContratos();
+        vistaRH.limpiarTablaContratos();
         
         int idCliente =  listaIDClientes.get(indexSelected -1);
         
@@ -115,14 +115,14 @@ public class ControladorRH {
         ArrayList<ContratoVO> contratosEncontrados;
         ContratoVO miContrato = null;
         
-        int iMesRH = vista.getComboMesesSelectedIndex() + 1;
+        int iMesRH = vistaRH.getComboMesesSelectedIndex() + 1;
         String sMesRH = Integer.toString(iMesRH);
         if (sMesRH.length() == 1)
             sMesRH = "0" + sMesRH;
-        String sAnnoRH = vista.getAnno();
+        String sAnnoRH = vistaRH.getAnno();
         int annoMesRH = Integer.parseInt(sAnnoRH + sMesRH);
         
-        contratosEncontrados = modelo.getAllContratosCliente(idCliente);
+        contratosEncontrados = modeloRH.getAllContratosCliente(idCliente);
         if (contratosEncontrados.size() > 0)
         {
             Funciones funcion = new Funciones();
@@ -138,7 +138,7 @@ public class ControladorRH {
                     // Apellidos y nombre del trabajador
                     ArrayList<PersonaVO> personaEncontrada;
                     PersonaVO persona = new PersonaVO();
-                    personaEncontrada = modelo.getPersona(miContrato.getIdtrabajador());
+                    personaEncontrada = modeloRH.getPersona(miContrato.getIdtrabajador());
                     for(int j = 0; j < personaEncontrada.size(); j++)
                         persona =personaEncontrada.get(j);
                     datosRow[0] = miContrato.getContrato_ccc();
@@ -152,13 +152,13 @@ public class ControladorRH {
                     else
                         datosRow[6] = funcion.formatoFecha_es(miContrato.getF_hasta().toString());
                     datosRow[7] = miContrato.getIdtrabajador().toString();                   
-                    vista.tablaContratosAddRow(datosRow);
+                    vistaRH.tablaContratosAddRow(datosRow);
                 }
             }
         }
         else
         {
-            String nomCliente = vista.getComboClientesSelectedItem().toString();
+            String nomCliente = vistaRH.getComboClientesSelectedItem().toString();
             String mensaje = "No se ha encontrado ningún contrato de " + nomCliente;
             showMessageDialog(null, mensaje,"Errores detectados",WARNING_MESSAGE);
         }
@@ -186,25 +186,25 @@ public class ControladorRH {
         
         Funciones funcion = new Funciones();
         
-        String mesRH = vista.getComboMesesSelectedItem().toString();
-        String annoRH = vista.getAnno();
-        String clienteGM = vista.getComboClientesSelectedItem().toString();
+        String mesRH = vistaRH.getComboMesesSelectedItem().toString();
+        String annoRH = vistaRH.getAnno();
+        String clienteGM = vistaRH.getComboClientesSelectedItem().toString();
         // CCC
-        int indexSelected = vista.getComboClientesSelectedIndex();
-        String CCC = vista.getTablaContratosValueAt(vista.getTablaContratosSelectedRow(), 0).toString();
+        int indexSelected = vistaRH.getComboClientesSelectedIndex();
+        String CCC = vistaRH.getTablaContratosValueAt(vistaRH.getTablaContratosSelectedRow(), 0).toString();
         
-        String nomEmpleado = vista.getTablaContratosValueAt(vista.getTablaContratosSelectedRow(), 1).toString();
+        String nomEmpleado = vistaRH.getTablaContratosValueAt(vistaRH.getTablaContratosSelectedRow(), 1).toString();
         // NIF empleado
         String NIFEmpleado = null;
         ArrayList<PersonaVO> lista = new ArrayList<>();
         PersonaVO persona = null;
-        int idPersona = Integer.parseInt(vista.getTablaContratosValueAt(vista.getTablaContratosSelectedRow(), 7).toString());
-        lista = modelo.getPersona(idPersona);
+        int idPersona = Integer.parseInt(vistaRH.getTablaContratosValueAt(vistaRH.getTablaContratosSelectedRow(), 7).toString());
+        lista = modeloRH.getPersona(idPersona);
         for (int i = 0; i < lista.size(); i++)
             persona = lista.get(i);
         NIFEmpleado = funcion.formatoNIF(persona.getNifcif());
 
-        String jornada = vista.getTablaContratosValueAt(vista.getTablaContratosSelectedRow(), 2).toString();
+        String jornada = vistaRH.getTablaContratosValueAt(vistaRH.getTablaContratosSelectedRow(), 2).toString();
         
         RegistroHorario reghor = new RegistroHorario(mesRH, annoRH,clienteGM,CCC,nomEmpleado,NIFEmpleado, jornada);
         

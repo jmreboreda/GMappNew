@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmapp.comun;
+package com.gmapp.common;
 
 
 import java.io.IOException;
@@ -20,13 +20,13 @@ import org.jdom2.input.SAXBuilder;
  *
  * @author jmrb
  */
-public class LeerPathFromXML {
+public class ReadPathFromXML {
     
     final String SysOper = System.getProperty("os.name");
     final String fileSeparator = System.getProperty("file.separator");
     final String classPath = System.getProperty("java.class.path")  + fileSeparator;
 
-    public LeerPathFromXML(){
+    public ReadPathFromXML(){
         
     }
     
